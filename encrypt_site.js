@@ -44,8 +44,15 @@ const vaultHtml = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#030509">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Docking Bay 94">
   <meta name="robots" content="noindex, nofollow">
   <title>DOCKING BAY 94 // IMPERIAL HOLONET ARCHIVES</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23070a12' stroke='%23FFE81F' stroke-width='4'/%3E%3Cpath d='M50 18 L76 34 L76 66 L50 82 L24 66 L24 34 Z' fill='none' stroke='%23ef4444' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23FFE81F'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23070a12' stroke='%23FFE81F' stroke-width='4'/%3E%3Cpath d='M50 18 L76 34 L76 66 L50 82 L24 66 L24 34 Z' fill='none' stroke='%23ef4444' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23FFE81F'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -310,7 +317,7 @@ const vaultHtml = `<!DOCTYPE html>
       .sector-header {
         font-size: 0.6rem;
       }
-      .passcode-input {
+      .password-input {
         font-size: 16px; /* Prevents auto-zoom on iOS */
         padding: 0.75rem 0.85rem;
       }

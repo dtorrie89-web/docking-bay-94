@@ -172,8 +172,11 @@ def generate_apps_script(games, plays):
         win = (p.get('winner') or '').replace('\\', '\\\\').replace('"', '\\"')
         dur = p.get('duration', 60)
         nts = (p.get('notes') or '').replace('\\', '\\\\').replace('"', '\\"')
+        sumry = (p.get('summary') or '').replace('\\', '\\\\').replace('"', '\\"')
+        photos_list = p.get('photos', [])
+        p_cnt_str = f"{len(photos_list)} photo(s)" if len(photos_list) > 0 else ""
         syn = 'Yes' if p.get('bgg_synced') else 'No'
-        play_rows.append(f'    ["{dt}", "{gt}", "{pls}", {cnt}, "{win}", {dur}, "{nts}", "{syn}"]')
+        play_rows.append(f'    ["{dt}", "{gt}", "{pls}", {cnt}, "{win}", {dur}, "{nts}", "{sumry}", "{p_cnt_str}", "{syn}"]')
 
     play_rows_str = ',\n'.join(play_rows)
     num_games = len(games)
@@ -687,7 +690,7 @@ function setupGameNightSpreadsheet() {{
 
   const playHeaders = [
     "Date", "Game Title", "Players (Who Attended)", "Player Count",
-    "Winner", "Duration (min)", "Notes", "BGG Synced"
+    "Winner", "Duration (min)", "Notes", "Summary / Debrief", "Photos Count", "BGG Synced"
   ];
   playsSheet.getRange(1, 1, 1, playHeaders.length).setValues([playHeaders]);
   playsSheet.getRange(1, 1, 1, playHeaders.length)
@@ -811,6 +814,8 @@ function doPost(e) {{
     const winner = data.winner || "";
     const duration = data.duration || 60;
     const notes = data.notes || "";
+    const summary = data.summary || "";
+    const photoCount = Array.isArray(data.photos) ? data.photos.length : 0;
     const bggSynced = data.bgg_synced ? "Yes" : "No";
 
     playsSheet.appendRow([
@@ -821,6 +826,8 @@ function doPost(e) {{
       winner,
       duration,
       notes,
+      summary,
+      photoCount > 0 ? (photoCount + " photo(s)") : "",
       bggSynced
     ]);
 
@@ -866,7 +873,9 @@ function doGet(e) {{
         winner: r[4],
         duration: r[5],
         notes: r[6],
-        bgg_synced: (r[7] === "Yes")
+        summary: r[7] || "",
+        photos: [],
+        bgg_synced: (r[9] === "Yes" || r[7] === "Yes")
       }});
     }}
 
